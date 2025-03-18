@@ -1,0 +1,23 @@
+#description: Installs RSAT Active Directory DS-LDS Tools
+#tags: Nerdio, RSAT, ActiveDirectory
+
+<#
+Notes:
+This script installs the RSAT Active Directory DS-LDS Tools capability using the Add-WindowsCapability command.
+Ensure that the system has internet access for downloading the feature.
+#>
+
+# Define the capability name as a string literal
+$CapabilityName = "Rsat.ActiveDirectory.DS-LDS.Tools~~~~0.0.1.0"
+
+# Attempt to add the Windows capability
+Write-Output "Adding Windows capability: $CapabilityName..."
+try {
+    Add-WindowsCapability -Online -Name "$CapabilityName"
+    Write-Output "Windows capability $CapabilityName added successfully."
+} catch {
+    Write-Output "Failed to add Windows capability"
+    Exit 1
+}
+
+### End Script ###
