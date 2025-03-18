@@ -1,0 +1,15 @@
+#description: Removes Windows Communications Apps
+#tags: Nerdio, Cleanup
+
+<#
+Notes:
+This script will remove the provisioned package and the installed package of "Windows Communications Apps" for all users.
+#>
+
+# Remove provisioned package for Windows Communications Apps
+Get-AppxProvisionedPackage -Online | Where-Object DisplayName -like '*windowscommunicationsapps*' | Remove-AppxProvisionedPackage -Online
+
+# Remove installed package for all users for Windows Communications Apps
+Get-AppxPackage -AllUsers | Where-Object {$_.Name -Like '*windowscommunicationsapps*'} | Remove-AppxPackage
+
+### End Script ###
