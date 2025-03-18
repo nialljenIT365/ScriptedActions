@@ -1,0 +1,41 @@
+#description: Sets the fDisableCpm registry key for Terminal Services
+#tags: Nerdio, Registry, TerminalServices
+
+<#
+Notes:
+This script sets the registry key `fDisableCpm` under 
+`HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services`
+to either 1 (Enabled) or 0 (Disabled).
+
+Customize the $EnabledValue variable to set the desired state.
+#>
+
+# Define registry key details
+$RegistryPath = "HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services"
+$ValueName = "fDisableCpm"
+$ValueType = "DWORD"  # Registry type
+$EnabledValue = 0     # Set to 1 to enable, 0 to disable
+
+# Ensure the registry path exists
+Write-Output "Ensuring registry path exists: $RegistryPath"
+if (-not (Test-Path $RegistryPath)) {
+    try {
+        New-Item -Path $RegistryPath -Force | Out-Null
+        Write-Output "Registry path created: $RegistryPath"
+    } catch {
+        Write-Output "Failed to create registry path: $_"
+        Exit 1
+    }
+}
+
+# Set the registry value
+Write-Output "Setting registry value: $ValueName to $EnabledValue ($ValueType) at $RegistryPath"
+try {
+    Set-ItemProperty -Path $RegistryPath -Name $ValueName -Value $EnabledValue -Type $ValueType
+    Write-Output "Registry value set successfully."
+} catch {
+    Write-Output "Failed to set registry value: $_"
+    Exit 1
+}
+
+### End Script ###
