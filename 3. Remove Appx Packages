@@ -1,0 +1,46 @@
+$AppxPackages = @(
+    "Microsoft.BingNews",
+    "Microsoft.GamingApp",
+    "Microsoft.BingWeather",
+    "Microsoft.GetHelp",
+    "Microsoft.Getstarted",
+    "Microsoft.MicrosoftSolitaireCollection",
+    "Microsoft.PowerAutomateDesktop",
+    "Microsoft.SkypeApp",
+    "Microsoft.WindowsAlarms",
+    "Microsoft.WindowsFeedbackHub",
+    "Microsoft.WindowsMaps",
+    "Microsoft.WindowsTerminal",
+    "Microsoft.Xbox.TCUI",
+    "Microsoft.XboxGameOverlay",
+    "Microsoft.XboxSpeechToTextOverlay",
+    "Microsoft.YourPhone",
+    "Microsoft.XboxIdentityProvider",
+    "Microsoft.XboxApp",
+    "Microsoft.ZuneMusic",
+    "Microsoft.ZuneVideo",
+    "Microsoft.Windowsstore",
+    "Microsoft.MicrosoftOfficeHub",
+    "Microsoft.Todos",
+    "Microsoft.People",
+    "Microsoft.WindowsSoundRecorder",
+    "Microsoft.XboxGamingOverlay",
+    "Microsoft.BingSearch"
+)
+
+foreach ($App in $AppxPackages) {
+    $provisionedPackage = Get-AppxProvisionedPackage -Online | Where-Object { $_.PackageName -like "*$App*" }
+    foreach ($package in $provisionedPackage) {
+        Remove-AppxProvisionedPackage -Online -PackageName $package.PackageName
+    }
+
+    $allUsersPackage = Get-AppxPackage -AllUsers | Where-Object { $_.Name -like "*$App*" }
+    foreach ($package in $allUsersPackage) {
+        Remove-AppxPackage -Package $package.PackageFullName -AllUsers
+    }
+
+    $currentUserPackage = Get-AppxPackage | Where-Object { $_.Name -like "*$App*" }
+    foreach ($package in $currentUserPackage) {
+        Remove-AppxPackage -Package $package.PackageFullName
+    }
+}
