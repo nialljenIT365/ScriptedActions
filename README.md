@@ -33,7 +33,4 @@
 | 28 | 28. HostPool Migration Part 2 (Scripted Action)  |Rejoin AVD Sessionhost to Target Hostpool, note should remove VM from previous hostpool before using|
 | 29 | 29. Add Azure Tag  |Run Book|
 | 30 | 30. Remove Azure Tag  |Run Book|
-| 28 | 28. Remove AppX Packages Outlook New  |-----------------|
 
-| Name  | Description |
-| 1. Install English United Kingdom language packs  | -----------------  |
