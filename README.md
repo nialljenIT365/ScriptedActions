@@ -35,6 +35,4 @@
 | 28 | 28. Remove AppX Packages Outlook New  |-----------------|
 
 | Name  | Description |
-| ------------- | ------------- |
-| 1. Install English United Kingdom language packs  | Content Cell  |
-| Content Cell  | Content Cell  |
+| 1. Install English United Kingdom language packs  | -----------------  |
