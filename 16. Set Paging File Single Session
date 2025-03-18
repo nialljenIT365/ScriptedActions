@@ -1,0 +1,20 @@
+# Disable the paging file for all drives first
+$ComputerSystem = Get-WmiObject -Class Win32_ComputerSystem -EnableAllPrivileges
+$ComputerSystem.AutomaticManagedPagefile = $false
+$ComputerSystem.Put()
+
+# Remove any existing paging files on all drives
+Get-WmiObject -Class Win32_PageFileSetting | ForEach-Object { $_.Delete() }
+
+# Create a system-managed paging file on the C: drive
+$PageFile = ([WmiClass]"Win32_PageFileSetting").CreateInstance()
+$PageFile.Name = "C:\pagefile.sys"
+$PageFile.InitialSize = 0
+$PageFile.MaximumSize = 0
+$PageFile.Put()
+
+# Enable system managed paging file on C drive
+$ComputerSystem.AutomaticManagedPagefile = $true
+$ComputerSystem.Put()
+
+Write-Host "Paging file set to system managed on C: drive only."
