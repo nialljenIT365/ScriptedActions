@@ -1,6 +1,6 @@
 # ScriptedActions
 
-| First Header  | Second Header | Third Header |
+| ID  | Script Name | Description |
 | ------------- | ------------- |--------------|
 | Content Cell  | Content Cell  |--------------|
 | Content Cell  | Content Cell  |--------------|
