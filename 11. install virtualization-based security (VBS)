@@ -1,0 +1,36 @@
+#description: Configures Hyper-V and ensures Power service is running and set to automatic
+
+<#
+Notes:
+This script will enable the Hyper-V feature, disable the Hyper-V tools, and ensure the Power service is running and set to automatic.
+#>
+
+# Enable Hyper-V feature
+Write-Output "Enabling Hyper-V feature..."
+try {
+    Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All -NoRestart
+    Write-Output "Hyper-V feature enabled successfully."
+} catch {
+    Write-Output "Failed to enable Hyper-V feature: $_"
+}
+
+# Disable Hyper-V tools
+Write-Output "Disabling Hyper-V tools..."
+try {
+    Disable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V-Tools-All -NoRestart
+    Write-Output "Hyper-V tools disabled successfully."
+} catch {
+    Write-Output "Failed to disable Hyper-V tools: $_"
+}
+
+# Ensure Power service is set to automatic and started
+Write-Output "Configuring Power service..."
+try {
+    Set-Service -Name POWER -StartupType Automatic
+    Start-Service -Name POWER
+    Write-Output "Power service is set to automatic and started successfully."
+} catch {
+    Write-Output "Failed to configure Power service: $_"
+}
+
+### End Script ###
