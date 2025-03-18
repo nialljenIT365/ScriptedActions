@@ -1,0 +1,30 @@
+#=============================================================================================================================
+#
+# Script Name:     Set_EnableIPv6-Nerdio.ps1
+# Description:     #.
+# Notes:           Will enable IPv6 on virutal machines for only the 'Microsoft Hyper-V Network Adapter' interface.
+#
+#=============================================================================================================================
+try
+    {
+    $NetAdapters = Get-NetAdapter
+    foreach ($NetAdapter in $NetAdapters)
+        {
+        If ($NetAdapter.InterfaceDescription -match 'Microsoft Hyper-V Network Adapter')
+            {
+            If (((Get-NetAdapterBinding -Name $NetAdapter.Name -ComponentID ms_tcpip6).Enabled) -eq $true)
+                {
+                Write-Host "<$($NetAdapter.Name)> has IPv6 enabled, will disable."
+                Enable-NetAdapterBinding -Name $NetAdapter.Name -ComponentID "ms_tcpip6" -Confirm:$false
+                }
+            Write-Host "<$($NetAdapter.Name)> IPv6 enablement status is: <$((Get-NetAdapterBinding -Name $NetAdapter.Name -ComponentID ms_tcpip6).Enabled)>"
+            }
+        }
+    }
+
+catch
+    {
+    $errMsg = $_.Exception.Message
+    return $errMsg
+    Exit 1
+    }
