@@ -1,6 +1,7 @@
 # ScriptedActions
 
 | ID  | Script Name | Description |
+| ------------- | ------------- | ------------- |
 | 1 | 1. Install English United Kingdom language packs |--------------|
 | 2 | 2. Set English United Kingdom default OS language  |--------------|
 | 3 | 3. Remove Appx Packages  |--------------|
