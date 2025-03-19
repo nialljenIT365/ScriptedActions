@@ -1,0 +1,11 @@
+#description: HostPool Migration Part 1 (Run Book)
+#Note: Generate a fresh token on the target hostpool before retrieval
+#execution mode: Combined
+######CHANGE ME############
+#Note: Modify to match target pool location
+$targetHostpoolResourceGroup = "rg-EUS-RemoteDesktopDevices-WorkspaceAndStorage-NEU-PRD"
+$targetHostpoolName = "NEU_PRD_SSPersistent_WO"
+######CHANGE ME############
+
+$targetHostpooltoken = (Get-AzWvdHostPoolRegistrationToken -ResourceGroupName $targetHostpoolResourceGroup -HostPoolName $targetHostpoolName).Token
+Write-Output "Target Hostpool Token is $targetHostpooltoken"
