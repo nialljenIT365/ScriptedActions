@@ -1,0 +1,16 @@
+#description: HostPool Migration Part 2 (Scripted Action)
+#Note: This script will shut down the target VM after setting the values in RDInfraAgent registry and restarting the service
+#execution mode: Combined
+######CHANGE ME############
+#Note: Note this can be recovered from the Hostpool GUI in Azure or from the output of HostPool Migration Part 1 of 3 (Run Book)
+$RegistrationToken = "<replace with key - also remove leading and trailing braces>"
+######CHANGE ME############
+
+Set-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\RDInfraAgent' -Name 'RegistrationToken' -Value $RegistrationToken  
+Set-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\RDInfraAgent' -Name 'IsRegistered' -Value 0
+# Restart service
+Restart-Service -Name 'RDAgentBootLoader'
+# Sleep for 30 Seconfs to allow Session Host time to unregister from Hostpool
+Start-Sleep -Seconds 30
+#Stop-Computer -ComputerName localhost -Force
+Restart-Computer -ComputerName localhost -Force
