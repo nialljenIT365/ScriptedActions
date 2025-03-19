@@ -37,3 +37,4 @@
 | 32 | 32. ZipModules  |Useful for downloading specific PS modules/versions for side loading in offline systems|
 | 32 | 32. Unblock-FIle (Recurse)  |Can be run on the offline system to unblock files in side loaded PS modules|
 | 33 | 33. Force Windows 11 Font to black  |Useful for scenarios you want to force a user font to black without a logout|
+| 34 | 33. Enable Hibernation (Bulk)  |Useful for looping through a target Subscription and Resouce Group to enable Hibernation on VM managed disks|
