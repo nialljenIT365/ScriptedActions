@@ -1,0 +1,8 @@
+$WinstationsKey = 'HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services'
+New-ItemProperty -Path $WinstationsKey -Name 'fUseUdpPortRedirector' -ErrorAction:SilentlyContinue -PropertyType:dword -Value 0 -Force
+ 
+$WinstationsKey = 'HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services'
+New-ItemProperty -Path $WinstationsKey -Name 'ICEEnableClientPortRange' -ErrorAction:SilentlyContinue -PropertyType:dword -Value 0 -Force
+
+$WinstationsKey = 'HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services'
+New-ItemProperty -Path $WinstationsKey -Name 'SelectTransport' -ErrorAction:SilentlyContinue -PropertyType:dword -Value 1 -Force
