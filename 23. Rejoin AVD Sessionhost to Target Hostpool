@@ -1,0 +1,9 @@
+#execution mode: Combined
+######CHANGE ME############
+#Note: Note this token can be recovered from the Hostpool GUI in Azure
+$RegistrationToken = "<Replace this with Hostpool token and remove leading/trailing brackets >"
+######CHANGE ME############
+Set-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\RDInfraAgent' -Name 'RegistrationToken' -Value $RegistrationToken  
+Set-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\RDInfraAgent' -Name 'IsRegistered' -Value 0
+# Restart service
+Restart-Service -Name 'RDAgentBootLoader'
