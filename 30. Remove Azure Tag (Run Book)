@@ -1,0 +1,12 @@
+##Change Me##
+$tags = @{"YOUR_TAG_NAME" = "YOUR_TAG_VALUE"}
+##Change Me##
+
+# Retrieve VM details and extract the Resource ID
+$VM = Get-AzVM -ResourceGroupName $AzureResourceGroupName -Name $AzureVMName
+$VMResourceId = $VM.Id
+
+Write-Output "VM Resource ID is: $VMResourceId"
+
+# Remove the tag on the VM
+Update-AzTag -ResourceId $VMResourceId -Tag $tags -Operation Delete
