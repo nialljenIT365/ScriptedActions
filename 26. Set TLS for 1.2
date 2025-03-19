@@ -1,0 +1,55 @@
+#=============================================================================================================================
+#
+# Script Name:     26. Set TLS for 1.2.ps1
+# Description:     #.
+# Notes:           Setting the TLS to 1.2
+#
+#=============================================================================================================================
+Function Set-abrdnReg
+    {
+    [CmdletBinding()]
+    param
+        (
+        $Key,
+        $Value,
+        $Data,
+        [Parameter(Mandatory=$true)]
+        [ValidateSet('String', 'DWord', 'QWord', 'Binary', 'MultiString', 'ExpandString')]
+        [string]$Type,
+        [switch]$ForceCreate
+        )
+    #Check if key path exists
+    If (!(Test-Path $Key) -and $ForceCreate -eq $true)
+        {New-Item $Key -Force}
+    Elseif (!(Test-Path $Key) -and $ForceCreate -ne $true)
+        {Write-Error "Registry path does not exist"}
+    #Check if value exists
+    If (((Get-ItemProperty -Path $Key -Name $Value -ErrorAction SilentlyContinue) -eq $null) -and $ForceCreate -eq $true)
+        {New-ItemProperty -Path $Key -Name $Value -PropertyType $Type -ErrorAction SilentlyContinue}
+    Elseif (((Get-ItemProperty -Path $Key -Name $Value -ErrorAction SilentlyContinue) -eq $null) -and $ForceCreate -ne $true)
+        {Write-Error "$Value : registry item does not exist"}
+    #Check if item type matches
+    If (((Get-Item $Key).GetValueKind($Value) -ne $Type) -and $ForceCreate -ne $true)
+        {Write-Error "Item type does not match existing <$Type>"}
+    ElseIf (((Get-Item $Key).GetValueKind($Value) -ne $Type) -and $ForceCreate -eq $true)
+        {New-ItemProperty -Path $Key -Name $Value -Value $Data -PropertyType $Type -Force}
+    #Set it
+    Set-ItemProperty -Path $Key -Name $Value -Value $Data
+    }
+
+try
+    {
+    Set-abrdnReg -Key 'HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Client' -Value 'DisabledByDefault' -Data '0' -Type DWord -ForceCreate
+    Set-abrdnReg -Key 'HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Client' -Value 'Enabled' -Data '1' -Type DWord -ForceCreate
+    Set-abrdnReg -Key 'HKLM:\SOFTWARE\Microsoft\.NETFramework\v2.0.50727' -Value 'SystemDefaultTlsVersions' -Data '1' -Type DWord -ForceCreate
+    Set-abrdnReg -Key 'HKLM:\SOFTWARE\Microsoft\.NETFramework\v2.0.50727' -Value 'SchUseStrongCrypto' -Data '1' -Type DWord -ForceCreate
+    Set-abrdnReg -Key 'HKLM:\SOFTWARE\Microsoft\.NETFramework\v4.0.30319' -Value 'SystemDefaultTlsVersions' -Data '1' -Type DWord -ForceCreate
+    Set-abrdnReg -Key 'HKLM:\SOFTWARE\Microsoft\.NETFramework\v4.0.30319' -Value 'SchUseStrongCrypto' -Data '1' -Type DWord -ForceCreate
+    }
+
+catch
+    {
+    $errMsg = $_.Exception.Message
+    return $errMsg
+    Exit 1
+    }
