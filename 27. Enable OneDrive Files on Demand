@@ -1,0 +1,32 @@
+#enable-appv
+
+# Function to create registry path if it doesn't exist
+function Ensure-RegistryPathExists {
+    param (
+        [string]$path
+    )
+    
+    if (-not (Test-Path $path)) {
+        New-Item -Path $path -Force | Out-Null
+        Write-Host "INFO: Created registry path $path"
+    }
+}
+
+# Define the registry key path
+$registryPath = "HKLM:\SOFTWARE\Policies\Microsoft\OneDrive"
+
+# Ensure the registry path exists
+Ensure-RegistryPathExists -path $registryPath
+
+# Set the first property
+$propertyName = "FilesOnDemandEnabled"
+$propertyValue = 1
+
+$currentValue = (Get-ItemProperty -Path $registryPath -Name $propertyName -ErrorAction SilentlyContinue).$propertyName
+
+if ($currentValue -ne $propertyValue) {
+    Set-ItemProperty -Path $registryPath -Name $propertyName -Value $propertyValue -Type DWord -Force
+    Write-Host "INFO: $propertyName is set to $propertyValue"
+} else {
+    Write-Host "INFO: $propertyName has already been set to $propertyValue"
+}
