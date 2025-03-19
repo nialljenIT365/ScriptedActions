@@ -1,0 +1,5 @@
+#Note: Deletes Session Host Entry from current HostPool
+#execution mode: Combined
+$suffix = ".ad.njen.com"
+$AzureVMFullName = $AzureVMName$suffix
+Remove-AzWvdSessionHost -HostPoolName $HostPoolName -ResourceGroupName $AzureResourceGroupName -Name $AzureVMName$suffix -Force
