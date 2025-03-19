@@ -33,4 +33,6 @@
 | 28 | 28. HostPool Migration Part 2 (Scripted Action)  |Rejoin AVD Sessionhost to Target Hostpool, note should remove VM from previous hostpool before using|
 | 29 | 29. Add Azure Tag  |Run Book|
 | 30 | 30. Remove Azure Tag  |Run Book|
+| 31 | 31. AVD User Optimizations - User Run Key  |Can be used to deploy a Run Key/Registry for all users from SYSTEM context|
+| 32 | 32. ZipModules  |Use for downloading specific PS modules/versions for side loading in offline systems|
 
