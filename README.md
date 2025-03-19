@@ -34,5 +34,5 @@
 | 29 | 29. Add Azure Tag  |Run Book|
 | 30 | 30. Remove Azure Tag  |Run Book|
 | 31 | 31. AVD User Optimizations - User Run Key  |Can be used to deploy a Run Key/Registry for all users from SYSTEM context|
-| 32 | 32. ZipModules  |Use for downloading specific PS modules/versions for side loading in offline systems|
-
+| 32 | 32. ZipModules  |Useful for downloading specific PS modules/versions for side loading in offline systems|
+| 32 | 32. Unblock-FIle (Recurse)  |Can be run on the offline system to unblock files in side loaded PS modules|
