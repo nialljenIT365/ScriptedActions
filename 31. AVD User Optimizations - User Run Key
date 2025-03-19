@@ -1,0 +1,760 @@
+# STEP 1: Create the AVDUserOptimizations.ps1 script before adding to the User Run Key
+
+# Define the script content
+
+$scriptContent = @'
+# Script Start #
+$DefaultUserSettings = @(
+    @{
+
+        "HivePath" = "HKCU:\Software\Microsoft\Office\16.0\Outlook\Cached Mode"
+
+        "KeyName" = "enable"
+
+        "PropertyType" = "DWORD"
+
+        "PropertyValue" = "1"
+
+        "SetProperty" = $true
+
+    },
+    @{
+
+        "HivePath" = "HKCU:\Software\Microsoft\Office\16.0\Outlook\Cached Mode"
+
+        "KeyName" = "CacheOthersMail"
+
+        "PropertyType" = "DWORD"
+
+        "PropertyValue" = "0"
+
+        "SetProperty" = $true
+
+    },
+    @{
+
+        "HivePath" = "HKCU:\Software\Microsoft\Office\16.0\Outlook\Cached Mode"
+
+        "KeyName" = "cachedexchangemode"
+
+        "PropertyType" = "DWORD"
+
+        "PropertyValue" = "2"
+
+        "SetProperty" = $true
+
+    },
+    @{
+
+        "HivePath" = "HKCU:\Software\Microsoft\Office\16.0\Outlook\Cached Mode"
+
+        "KeyName" = "SyncWindowSetting"
+
+        "PropertyType" = "DWORD"
+
+        "PropertyValue" = "3"
+
+        "SetProperty" = $true
+
+    },
+    @{
+
+        "HivePath" = "HKCU:\Software\Microsoft\Office\16.0\Outlook\Cached Mode"
+
+        "KeyName" = "SyncWindowSettingDays"
+
+        "PropertyType" = "DWORD"
+
+        "PropertyValue" = "0"
+
+        "SetProperty" = $true
+
+    },
+    @{
+
+        "HivePath" = "HKCU:\Software\Microsoft\Terminal Server Client\Default\AddIns\WebRTC Redirector"
+
+        "KeyName" = "UseHardwareEncoding"
+
+        "PropertyType" = "DWORD"
+
+        "PropertyValue" = "1"
+
+        "SetProperty" = $true
+
+    },
+    @{
+
+        "HivePath" = "HKCU:\Control Panel\Desktop"
+
+        "KeyName" = "FontSmoothing"
+
+        "PropertyType" = "STRING"
+
+        "PropertyValue" = "2"
+
+        "SetProperty" = $true
+
+    },
+    @{
+
+        "HivePath" = "HKCU:\Control Panel\Desktop"
+
+        "KeyName" = "Wallpaper"
+
+        "PropertyType" = "STRING"
+
+        "PropertyValue" = "C:\Windows\Web\Wallpaper\Windows\AAMWallpaper.jpg"
+
+        "SetProperty" = $true
+
+    },
+    @{
+
+        "HivePath" = "HKCU:\Control Panel\Desktop"
+
+        "KeyName" = "WallpaperStyle"
+
+        "PropertyType" = "STRING"
+
+        "PropertyValue" = "2"
+
+        "SetProperty" = $true
+
+    },
+    @{
+
+        "HivePath" = "HKCU:\Control Panel\Colors"
+
+        "KeyName" = "Background"
+
+        "PropertyType" = "STRING"
+
+        "PropertyValue" = "255 255 255"
+
+        "SetProperty" = $true
+
+    },
+
+    @{
+
+        "HivePath" = "HKCU:\Control Panel\Desktop"
+
+        "KeyName" = "MenuShowDelay"
+
+        "PropertyType" = "STRING"
+
+        "PropertyValue" = "0"
+
+        "SetProperty" = $true
+
+    },
+
+    @{
+
+        "HivePath" = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced"
+
+        "KeyName" = "IconsOnly"
+
+        "PropertyType" = "DWORD"
+
+        "PropertyValue" = "1"
+
+        "SetProperty" = $true
+
+    },
+
+    @{
+
+        "HivePath" = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced"
+
+        "KeyName" = "ListviewAlphaSelect"
+
+        "PropertyType" = "DWORD"
+
+        "PropertyValue" = "0"
+
+        "SetProperty" = $true
+
+    },
+
+    @{
+
+        "HivePath" = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced"
+
+        "KeyName" = "ListviewShadow"
+
+        "PropertyType" = "DWORD"
+
+        "PropertyValue" = "0"
+
+        "SetProperty" = $true
+
+    },
+
+    @{
+
+        "HivePath" = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced"
+
+        "KeyName" = "ShowCompColor"
+
+        "PropertyType" = "DWORD"
+
+        "PropertyValue" = "1"
+
+        "SetProperty" = $true
+
+    },
+
+    @{
+
+        "HivePath" = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced"
+
+        "KeyName" = "ShowInfoTip"
+
+        "PropertyType" = "DWORD"
+
+        "PropertyValue" = "1"
+
+        "SetProperty" = $true
+
+    },
+
+    @{
+
+        "HivePath" = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced"
+
+        "KeyName" = "TaskbarAnimations"
+
+        "PropertyType" = "DWORD"
+
+        "PropertyValue" = "0"
+
+        "SetProperty" = $true
+
+    },
+
+    @{
+
+        "HivePath" = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects"
+
+        "KeyName" = "VisualFXSetting"
+
+        "PropertyType" = "DWORD"
+
+        "PropertyValue" = "3"
+
+        "SetProperty" = $true
+
+    },
+
+    @{
+
+        "HivePath" = "HKCU:\Software\Microsoft\Windows\DWM"
+
+        "KeyName" = "EnableAeroPeek"
+
+        "PropertyType" = "DWORD"
+
+        "PropertyValue" = "0"
+
+        "SetProperty" = $true
+
+    },
+
+    @{
+
+        "HivePath" = "HKCU:\Software\Microsoft\Windows\DWM"
+
+        "KeyName" = "AlwaysHiberNateThumbnails"
+
+        "PropertyType" = "DWORD"
+
+        "PropertyValue" = "0"
+
+        "SetProperty" = $true
+
+    },
+
+    @{
+
+        "HivePath" = "HKCU:\Control Panel\Desktop"
+
+        "KeyName" = "DragFullWindows"
+
+        "PropertyType" = "STRING"
+
+        "PropertyValue" = "0"
+
+        "SetProperty" = $true
+
+    },
+
+    @{
+
+        "HivePath" = "HKCU:\Control Panel\Desktop"
+
+        "KeyName" = "FontSmoothing"
+
+        "PropertyType" = "STRING"
+
+        "PropertyValue" = "2"
+
+        "SetProperty" = $true
+
+    },
+
+    @{
+
+        "HivePath" = "HKCU:\Control Panel\Desktop"
+
+        "KeyName" = "UserPreferencesMask"
+
+        "PropertyType" = "BINARY"
+
+        "PropertyValue" = "0x98,0x32,0x07,0x80,0x10,0x00,0x00,0x00"
+
+        "SetProperty" = $true
+
+    },
+
+    @{
+
+        "HivePath" = "HKCU:\Control Panel\Desktop\WindowMetrics"
+
+        "KeyName" = "MinAnimate"
+
+        "PropertyType" = "STRING"
+
+        "PropertyValue" = "0"
+
+        "SetProperty" = $true
+
+    },
+
+    @{
+
+        "HivePath" = "HKCU:\Software\Microsoft\Windows\CurrentVersion\StorageSense\Parameters\StoragePolicy"
+
+        "KeyName" = "01"
+
+        "PropertyType" = "DWORD"
+
+        "PropertyValue" = "0"
+
+        "SetProperty" = $true
+
+    },
+
+    @{
+
+        "HivePath" = "HKCU:\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager"
+
+        "KeyName" = "SubscribedContent-338393Enabled"
+
+        "PropertyType" = "DWORD"
+
+        "PropertyValue" = "0"
+
+        "SetProperty" = $true
+
+    },
+
+    @{
+
+        "HivePath" = "HKCU:\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager"
+
+        "KeyName" = "SubscribedContent-353696Enabled"
+
+        "PropertyType" = "DWORD"
+
+        "PropertyValue" = "0"
+
+        "SetProperty" = $true
+
+    },
+
+    @{
+
+        "HivePath" = "HKCU:\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager"
+
+        "KeyName" = "SubscribedContent-338388Enabled"
+
+        "PropertyType" = "DWORD"
+
+        "PropertyValue" = "0"
+
+        "SetProperty" = $true
+
+    },
+
+    @{
+
+        "HivePath" = "HKCU:\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager"
+
+        "KeyName" = "SubscribedContent-338389Enabled"
+
+        "PropertyType" = "DWORD"
+
+        "PropertyValue" = "0"
+
+        "SetProperty" = $true
+
+    },
+
+    @{
+
+        "HivePath" = "HKCU:\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager"
+
+        "KeyName" = "SystemPaneSuggestionsEnabled"
+
+        "PropertyType" = "DWORD"
+
+        "PropertyValue" = "0"
+
+        "SetProperty" = $true
+
+    },
+
+    @{
+
+        "HivePath" = "HKCU:\Control Panel\International\User Profile"
+
+        "KeyName" = "HttpAcceptLanguageOptOut"
+
+        "PropertyType" = "DWORD"
+
+        "PropertyValue" = "1"
+
+        "SetProperty" = $true
+
+    },
+
+    @{
+
+        "HivePath" = "HKCU:\Software\Microsoft\Windows\CurrentVersion\BackgroundAccessApplications\Microsoft.Windows.Photos_8wekyb3d8bbwe"
+
+        "KeyName" = "Disabled"
+
+        "PropertyType" = "DWORD"
+
+        "PropertyValue" = "1"
+
+        "SetProperty" = $true
+
+    },
+
+    @{
+
+        "HivePath" = "HKCU:\Software\Microsoft\InputPersonalization"
+
+        "KeyName" = "RestrictImplicitInkCollection"
+
+        "PropertyType" = "DWORD"
+
+        "PropertyValue" = "1"
+
+        "SetProperty" = $true
+
+    },
+
+    @{
+
+        "HivePath" = "HKCU:\Software\Microsoft\Personalization\Settings"
+
+        "KeyName" = "AcceptedPrivacyPolicy"
+
+        "PropertyType" = "DWORD"
+
+        "PropertyValue" = "0"
+
+        "SetProperty" = $true
+
+    },
+
+    @{
+
+        "HivePath" = "HKCU:\Software\Microsoft\Windows\CurrentVersion\UserProfileEngagement"
+
+        "KeyName" = "ScoobeSystemSettingEnabled"
+
+        "PropertyType" = "DWORD"
+
+        "PropertyValue" = "0"
+
+        "SetProperty" = $true
+
+    },
+
+    @{
+
+        "HivePath" = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Search"
+
+        "KeyName" = "BingSearchEnabled"
+
+        "PropertyType" = "DWORD"
+
+        "PropertyValue" = "0"
+
+        "SetProperty" = $true
+
+    },
+
+    @{
+
+        "HivePath" = "HKCU:\Software\Microsoft\Windows\CurrentVersion\SearchSettings"
+
+        "KeyName" = "IsAADCloudSearchEnabled"
+
+        "PropertyType" = "DWORD"
+
+        "PropertyValue" = "0"
+
+        "SetProperty" = $true
+
+    }
+
+)
+
+function Set-RegistryValue {
+    param (
+        [string]$HivePath,
+        [string]$KeyName,
+        [string]$PropertyType,
+        [string]$PropertyValue
+    )
+
+    if (-not (Test-Path $HivePath)) {
+        Write-Host "Registry path $HivePath does not exist. Creating it."
+        New-Item -Path $HivePath -Force | Out-Null
+    }
+
+    switch ($PropertyType) {
+        "DWORD" {
+            $Value = [convert]::ToInt32($PropertyValue)
+            Set-ItemProperty -Path $HivePath -Name $KeyName -Value $Value -Force
+        }
+        "STRING" {
+            Set-ItemProperty -Path $HivePath -Name $KeyName -Value $PropertyValue -Force
+        }
+        "BINARY" {
+            $ByteArray = $PropertyValue -split ',' | ForEach-Object { [convert]::ToByte($_,16) }
+            Set-ItemProperty -Path $HivePath -Name $KeyName -Value $ByteArray -Force
+        }
+        default {
+            Write-Host "Unknown Property Type: $PropertyType"
+        }
+    }
+}
+
+foreach ($Setting in $DefaultUserSettings) {
+    if ($Setting.SetProperty -eq $true) {
+        Set-RegistryValue -HivePath $Setting.HivePath -KeyName $Setting.KeyName -PropertyType $Setting.PropertyType -PropertyValue $Setting.PropertyValue
+        Write-Host "Set $($Setting.KeyName) in $($Setting.HivePath)"
+    }
+}
+
+######## Section 1: Check/Increment or Create "HKCU:\Software\Scripts" -> "Increment" ########
+$IncrementKeyPath = "HKCU:\Software\Scripts"
+$IncrementKeyName = "Increment"
+
+if (-not (Test-Path $IncrementKeyPath)) {
+    Write-Host "Registry path $IncrementKeyPath does not exist. Creating it."
+    New-Item -Path $IncrementKeyPath -Force | Out-Null
+}
+
+$CurrentIncrementValue = Get-ItemProperty -Path $IncrementKeyPath -Name $IncrementKeyName -ErrorAction SilentlyContinue
+
+if ($null -eq $CurrentIncrementValue) {
+    # If the value does not exist, create it and set it to 1
+    Set-ItemProperty -Path $IncrementKeyPath -Name $IncrementKeyName -Value 1 -Force
+    Write-Host "Created $IncrementKeyName and set its value to 1."
+} else {
+    # If the value exists, increment it by 1
+    $NewIncrementValue = $CurrentIncrementValue.Increment + 1
+    Set-ItemProperty -Path $IncrementKeyPath -Name $IncrementKeyName -Value $NewIncrementValue -Force
+    Write-Host "Incremented $IncrementKeyName value to $NewIncrementValue."
+}
+
+######## Section 2: Delete "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run" -> "RunAVDUserOptimizations" if Increment >= 2 ########
+if ($NewIncrementValue -ge 2) {
+
+    Get-Item HKCU:\Software\Microsoft\Windows\CurrentVersion\Run | Remove-ItemProperty -Name RunAVDUserOptimizations -ErrorAction SilentlyContinue
+}
+
+Stop-Process -Name explorer -Force
+Start-Process explorer
+
+#Start-Process outlook
+#sleep -Seconds 5
+#Stop-Process -Name outlook -Force
+
+# Script End #
+'@
+
+# Define the file path for AVDUserOptimizations.ps1
+
+$filePath = "C:\Windows\AVDUserOptimizations.ps1"
+
+# Create the script file
+
+Set-Content -Path $filePath -Value $scriptContent
+
+Write-Host "AVDUserOptimizations.ps1 has been created at $filePath."
+
+# STEP 2: Apply RunOnce activities for all existing users and modify NTUSER.DAT for new users
+
+# Define the command to run the script with Bypass and non-blocking execution
+
+$runCommand = "C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -NoProfile -WindowStyle Hidden -File `"$filePath`""
+
+# PART 1: Apply registry changes for all relevant existing user accounts (excluding built-in, .DEFAULT, and SIDs ending with _classes)
+
+# Exclude built-in, default, and any SIDs ending in _classes
+
+$excludedSIDs = @(
+
+    "S-1-5-18",  # Local System
+
+    "S-1-5-19",  # Local Service
+
+    "S-1-5-20",  # Network Service
+
+    ".DEFAULT"   # Default profile
+
+)
+
+New-PSDrive -PSProvider Registry -Name HKU -Root HKEY_USERS
+
+# Get all user SIDs in HKEY_USERS, excluding those in the $excludedSIDs array and those ending with _classes
+
+$allUserSIDs = Get-ChildItem -Path "HKU:\" | Where-Object {
+
+    $_.PSChildName -notin $excludedSIDs -and
+
+    $_.PSChildName -match "^S-1-5-21" -and
+
+    -not ($_.PSChildName -like "*_classes")
+
+}
+
+ 
+# Loop through each user SID and add the RunOnce entry
+
+foreach ($sid in $allUserSIDs) {
+
+    $regPath = "HKU:\$($sid.PSChildName)\Software\Microsoft\Windows\CurrentVersion\Run"
+
+ 
+
+    # Create the RunOnce key if it does not exist
+
+    if (-not (Test-Path $regPath)) {
+
+        New-Item -Path "HKU:\$($sid.PSChildName)\Software\Microsoft\Windows\CurrentVersion" -Name "Run"
+
+    }
+
+ 
+
+    # Set the RunOnce entry for each user SID
+
+    Set-ItemProperty -Path $regPath -Name "RunAVDUserOptimizations" -Value $runCommand
+
+ 
+
+    Write-Host "RunOnce entry has been added for user SID: $($sid.PSChildName)"
+
+}
+
+Write-Host "AVDUserOptimizations.ps1 has been set to run at next logon for all relevant existing users."
+
+# PART 2: Modify NTUSER.DAT for new users who haven't yet logged in
+
+# Define the path to the Default user profile NTUSER.DAT
+
+$ntUserDatPath = "C:\Users\Default\NTUSER.DAT"
+
+# Define a temporary registry key name for loading the hive in HKEY_LOCAL_MACHINE
+
+$tempKey = "TempDefaultUserHive"
+
+# Check if the NTUSER.DAT file exists before proceeding
+
+if (Test-Path $ntUserDatPath) {
+
+    Write-Host "NTUSER.DAT found. Proceeding to load the registry hive."
+
+ 
+
+    # Load the NTUSER.DAT hive into the registry under HKEY_LOCAL_MACHINE\$tempKey
+
+    reg load "HKLM\$tempKey" $ntUserDatPath
+
+ 
+
+    # Check if the hive was successfully loaded by confirming the key exists
+
+    if (Test-Path "HKLM:\$tempKey") {
+
+        Write-Host "NTUSER.DAT hive successfully loaded under HKEY_LOCAL_MACHINE\$tempKey."
+
+ 
+
+        # Check if the CurrentVersion key exists, if not, create it
+
+        if (-not (Test-Path "HKLM:\$tempKey\Software\Microsoft\Windows\CurrentVersion")) {
+
+            New-Item -Path "HKLM:\$tempKey\Software\Microsoft\Windows" -Name "CurrentVersion"
+
+        }
+
+ 
+
+        # Check if the RunOnce key exists, if not, create it
+
+        if (-not (Test-Path "HKLM:\$tempKey\Software\Microsoft\Windows\CurrentVersion\Run")) {
+
+            New-Item -Path "HKLM:\$tempKey\Software\Microsoft\Windows\CurrentVersion" -Name "Run"
+
+        }
+
+ 
+
+        # Set the registry entry under the loaded hive's RunOnce key
+
+        Set-ItemProperty -Path "HKLM:\$tempKey\Software\Microsoft\Windows\CurrentVersion\Run" -Name "RunAVDUserOptimizations" -Value $runCommand
+
+ 
+
+        Write-Host "RunOnce key has been added to the loaded NTUSER.DAT hive."
+
+    }
+
+    else {
+
+        Write-Host "Failed to load NTUSER.DAT hive under HKEY_LOCAL_MACHINE. Exiting."
+
+    }
+
+ 
+
+    # Unload the NTUSER.DAT hive from the registry after modification
+
+    reg unload "HKLM\$tempKey"
+
+ 
+
+    Write-Host "NTUSER.DAT hive has been unloaded from HKEY_LOCAL_MACHINE."
+
+}
+
+else {
+
+    Write-Host "NTUSER.DAT file not found at $ntUserDatPath. Exiting."
+
+}
+
+# Clear Up Drive Mapping
+
+Remove-PSDrive -Name HKU -Force
