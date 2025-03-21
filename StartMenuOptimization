@@ -1,0 +1,82 @@
+# Function to create and apply a registry entry
+function Set-RegistryValue {
+    param (
+        [string]$Path,
+        [string]$ValueName,
+        [string]$ValueType,
+        [string]$ValueData
+    )
+
+    try {
+        # Ensure the registry path exists
+        if (-not (Test-Path $Path)) {
+            New-Item -Path $Path -Force | Out-Null
+        }
+
+        # Set the registry value
+        New-ItemProperty -Path $Path -Name $ValueName -PropertyType $ValueType -Value $ValueData -Force | Out-Null
+
+        Write-Host "Successfully set $ValueName in $Path to $ValueData" -ForegroundColor Green
+    } catch {
+        Write-Host "Failed to set $ValueName" -ForegroundColor Red
+    }
+}
+
+# Array of registry entries
+$regEntries = @(
+    @{
+        Path      = "HKCU:\Control Panel\Desktop"
+        ValueName = "MenuShowDelay"
+        ValueType = "String"
+        ValueData = "0"
+    },
+    @{
+        Path      = "HKCU:\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager"
+        ValueName = "SubscribedContent-338393Enabled"
+        ValueType = "DWord"
+        ValueData = "0"
+    },
+    @{
+        Path      = "HKCU:\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager"
+        ValueName = "SubscribedContent-353696Enabled"
+        ValueType = "DWord"
+        ValueData = "0"
+    },
+    @{
+        Path      = "HKCU:\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager"
+        ValueName = "SubscribedContent-338388Enabled"
+        ValueType = "DWord"
+        ValueData = "0"
+    },
+    @{
+        Path      = "HKCU:\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager"
+        ValueName = "SubscribedContent-338389Enabled"
+        ValueType = "DWord"
+        ValueData = "0"
+    },
+    @{
+        Path      = "HKCU:\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager"
+        ValueName = "SystemPaneSuggestionsEnabled"
+        ValueType = "DWord"
+        ValueData = "0"
+    },
+    @{
+        Path      = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Search"
+        ValueName = "BingSearchEnabled"
+        ValueType = "DWord"
+        ValueData = "0"
+    },
+    @{
+        Path      = "HKCU:\Software\Microsoft\Windows\CurrentVersion\SearchSettings"
+        ValueName = "IsAADCloudSearchEnabled"
+        ValueType = "DWord"
+        ValueData = "0"
+    }
+)
+
+# Loop through each registry entry and apply it
+foreach ($entry in $regEntries) {
+    Set-RegistryValue -Path $entry.Path -ValueName $entry.ValueName -ValueType $entry.ValueType -ValueData $entry.ValueData
+}
+
+Write-Host "All registry entries have been successfully applied."
