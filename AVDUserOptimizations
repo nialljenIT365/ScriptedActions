@@ -1,0 +1,690 @@
+$DefaultUserSettings = @(
+    @{
+
+        "HivePath" = "HKCU:\Software\Microsoft\Office\16.0\Outlook\autodiscover"
+
+        "KeyName" = "zeroconfigexchange"
+
+        "PropertyType" = "DWORD"
+
+        "PropertyValue" = "1"
+
+        "SetProperty" = $true
+
+    },
+    @{
+
+        "HivePath" = "HKCU:\Software\Microsoft\Office\16.0\Outlook\Cached Mode"
+
+        "KeyName" = "enable"
+
+        "PropertyType" = "DWORD"
+
+        "PropertyValue" = "1"
+
+        "SetProperty" = $true
+
+    },
+    @{
+
+        "HivePath" = "HKCU:\Software\Microsoft\Office\16.0\Outlook\Cached Mode"
+
+        "KeyName" = "CacheOthersMail"
+
+        "PropertyType" = "DWORD"
+
+        "PropertyValue" = "0"
+
+        "SetProperty" = $true
+
+    },
+    @{
+
+        "HivePath" = "HKCU:\Software\Microsoft\Office\16.0\Outlook\Cached Mode"
+
+        "KeyName" = "cachedexchangemode"
+
+        "PropertyType" = "DWORD"
+
+        "PropertyValue" = "2"
+
+        "SetProperty" = $true
+
+    },
+    @{
+
+        "HivePath" = "HKCU:\Software\Microsoft\Office\16.0\Outlook\Cached Mode"
+
+        "KeyName" = "SyncWindowSetting"
+
+        "PropertyType" = "DWORD"
+
+        "PropertyValue" = "1"
+
+        "SetProperty" = $true
+
+    },
+    @{
+
+        "HivePath" = "HKCU:\Software\Microsoft\Office\16.0\Outlook\Cached Mode"
+
+        "KeyName" = "SyncWindowSettingDays"
+
+        "PropertyType" = "DWORD"
+
+        "PropertyValue" = "0"
+
+        "SetProperty" = $true
+
+    },
+    @{
+
+        "HivePath" = "HKCU:\Software\Microsoft\Terminal Server Client\Default\AddIns\WebRTC Redirector"
+
+        "KeyName" = "UseHardwareEncoding"
+
+        "PropertyType" = "DWORD"
+
+        "PropertyValue" = "1"
+
+        "SetProperty" = $true
+
+    },
+    @{
+
+        "HivePath" = "HKCU:\Control Panel\Desktop"
+
+        "KeyName" = "FontSmoothing"
+
+        "PropertyType" = "STRING"
+
+        "PropertyValue" = "2"
+
+        "SetProperty" = $true
+
+    },
+    @{
+
+        "HivePath" = "HKCU:\Control Panel\Desktop"
+
+        "KeyName" = "MenuShowDelay"
+
+        "PropertyType" = "STRING"
+
+        "PropertyValue" = "0"
+
+        "SetProperty" = $true
+
+    },
+
+    @{
+
+        "HivePath" = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced"
+
+        "KeyName" = "IconsOnly"
+
+        "PropertyType" = "DWORD"
+
+        "PropertyValue" = "1"
+
+        "SetProperty" = $true
+
+    },
+
+    @{
+
+        "HivePath" = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced"
+
+        "KeyName" = "ListviewAlphaSelect"
+
+        "PropertyType" = "DWORD"
+
+        "PropertyValue" = "0"
+
+        "SetProperty" = $true
+
+    },
+
+    @{
+
+        "HivePath" = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced"
+
+        "KeyName" = "ListviewShadow"
+
+        "PropertyType" = "DWORD"
+
+        "PropertyValue" = "0"
+
+        "SetProperty" = $true
+
+    },
+
+    @{
+
+        "HivePath" = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced"
+
+        "KeyName" = "ShowCompColor"
+
+        "PropertyType" = "DWORD"
+
+        "PropertyValue" = "1"
+
+        "SetProperty" = $true
+
+    },
+
+    @{
+
+        "HivePath" = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced"
+
+        "KeyName" = "ShowInfoTip"
+
+        "PropertyType" = "DWORD"
+
+        "PropertyValue" = "1"
+
+        "SetProperty" = $true
+
+    },
+
+    @{
+
+        "HivePath" = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced"
+
+        "KeyName" = "TaskbarAnimations"
+
+        "PropertyType" = "DWORD"
+
+        "PropertyValue" = "0"
+
+        "SetProperty" = $true
+
+    },
+
+    @{
+
+        "HivePath" = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects"
+
+        "KeyName" = "VisualFXSetting"
+
+        "PropertyType" = "DWORD"
+
+        "PropertyValue" = "3"
+
+        "SetProperty" = $true
+
+    },
+
+    @{
+
+        "HivePath" = "HKCU:\Software\Microsoft\Windows\DWM"
+
+        "KeyName" = "EnableAeroPeek"
+
+        "PropertyType" = "DWORD"
+
+        "PropertyValue" = "0"
+
+        "SetProperty" = $true
+
+    },
+
+    @{
+
+        "HivePath" = "HKCU:\Software\Microsoft\Windows\DWM"
+
+        "KeyName" = "AlwaysHiberNateThumbnails"
+
+        "PropertyType" = "DWORD"
+
+        "PropertyValue" = "0"
+
+        "SetProperty" = $true
+
+    },
+
+    @{
+
+        "HivePath" = "HKCU:\Control Panel\Desktop"
+
+        "KeyName" = "DragFullWindows"
+
+        "PropertyType" = "STRING"
+
+        "PropertyValue" = "0"
+
+        "SetProperty" = $true
+
+    },
+
+    @{
+
+        "HivePath" = "HKCU:\Control Panel\Desktop"
+
+        "KeyName" = "FontSmoothing"
+
+        "PropertyType" = "STRING"
+
+        "PropertyValue" = "2"
+
+        "SetProperty" = $true
+
+    },
+
+    @{
+
+        "HivePath" = "HKCU:\Control Panel\Desktop"
+
+        "KeyName" = "UserPreferencesMask"
+
+        "PropertyType" = "BINARY"
+
+        "PropertyValue" = "0x98,0x32,0x07,0x80,0x10,0x00,0x00,0x00"
+
+        "SetProperty" = $true
+
+    },
+
+    @{
+
+        "HivePath" = "HKCU:\Control Panel\Desktop\WindowMetrics"
+
+        "KeyName" = "MinAnimate"
+
+        "PropertyType" = "STRING"
+
+        "PropertyValue" = "0"
+
+        "SetProperty" = $true
+
+    },
+
+    @{
+
+        "HivePath" = "HKCU:\Software\Microsoft\Windows\CurrentVersion\StorageSense\Parameters\StoragePolicy"
+
+        "KeyName" = "01"
+
+        "PropertyType" = "DWORD"
+
+        "PropertyValue" = "0"
+
+        "SetProperty" = $true
+
+    },
+
+    @{
+
+        "HivePath" = "HKCU:\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager"
+
+        "KeyName" = "SubscribedContent-338393Enabled"
+
+        "PropertyType" = "DWORD"
+
+        "PropertyValue" = "0"
+
+        "SetProperty" = $true
+
+    },
+
+    @{
+
+        "HivePath" = "HKCU:\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager"
+
+        "KeyName" = "SubscribedContent-353696Enabled"
+
+        "PropertyType" = "DWORD"
+
+        "PropertyValue" = "0"
+
+        "SetProperty" = $true
+
+    },
+
+    @{
+
+        "HivePath" = "HKCU:\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager"
+
+        "KeyName" = "SubscribedContent-338388Enabled"
+
+        "PropertyType" = "DWORD"
+
+        "PropertyValue" = "0"
+
+        "SetProperty" = $true
+
+    },
+
+    @{
+
+        "HivePath" = "HKCU:\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager"
+
+        "KeyName" = "SubscribedContent-338389Enabled"
+
+        "PropertyType" = "DWORD"
+
+        "PropertyValue" = "0"
+
+        "SetProperty" = $true
+
+    },
+
+    @{
+
+        "HivePath" = "HKCU:\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager"
+
+        "KeyName" = "SystemPaneSuggestionsEnabled"
+
+        "PropertyType" = "DWORD"
+
+        "PropertyValue" = "0"
+
+        "SetProperty" = $true
+
+    },
+
+    @{
+
+        "HivePath" = "HKCU:\Control Panel\International\User Profile"
+
+        "KeyName" = "HttpAcceptLanguageOptOut"
+
+        "PropertyType" = "DWORD"
+
+        "PropertyValue" = "1"
+
+        "SetProperty" = $true
+
+    },
+
+    @{
+
+        "HivePath" = "HKCU:\Software\Microsoft\Windows\CurrentVersion\BackgroundAccessApplications\Microsoft.Windows.Photos_8wekyb3d8bbwe"
+
+        "KeyName" = "Disabled"
+
+        "PropertyType" = "DWORD"
+
+        "PropertyValue" = "1"
+
+        "SetProperty" = $true
+
+    },
+
+    @{
+
+        "HivePath" = "HKCU:\Software\Microsoft\InputPersonalization"
+
+        "KeyName" = "RestrictImplicitInkCollection"
+
+        "PropertyType" = "DWORD"
+
+        "PropertyValue" = "1"
+
+        "SetProperty" = $true
+
+    },
+
+    @{
+
+        "HivePath" = "HKCU:\Software\Microsoft\Personalization\Settings"
+
+        "KeyName" = "AcceptedPrivacyPolicy"
+
+        "PropertyType" = "DWORD"
+
+        "PropertyValue" = "0"
+
+        "SetProperty" = $true
+
+    },
+
+    @{
+
+        "HivePath" = "HKCU:\Software\Microsoft\Windows\CurrentVersion\UserProfileEngagement"
+
+        "KeyName" = "ScoobeSystemSettingEnabled"
+
+        "PropertyType" = "DWORD"
+
+        "PropertyValue" = "0"
+
+        "SetProperty" = $true
+
+    },
+
+    @{
+
+        "HivePath" = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Search"
+
+        "KeyName" = "BingSearchEnabled"
+
+        "PropertyType" = "DWORD"
+
+        "PropertyValue" = "0"
+
+        "SetProperty" = $true
+
+    },
+
+    @{
+
+        "HivePath" = "HKCU:\Software\Microsoft\Windows\CurrentVersion\SearchSettings"
+
+        "KeyName" = "IsAADCloudSearchEnabled"
+
+        "PropertyType" = "DWORD"
+
+        "PropertyValue" = "0"
+
+        "SetProperty" = $true
+
+    }
+
+)
+
+function Set-RegistryValue {
+    param (
+        [string]$HivePath,
+        [string]$KeyName,
+        [string]$PropertyType,
+        [string]$PropertyValue
+    )
+
+    if (-not (Test-Path $HivePath)) {
+        Write-Host "Registry path $HivePath does not exist. Creating it."
+        New-Item -Path $HivePath -Force | Out-Null
+    }
+
+    switch ($PropertyType) {
+        "DWORD" {
+            $Value = [convert]::ToInt32($PropertyValue)
+            Set-ItemProperty -Path $HivePath -Name $KeyName -Value $Value -Force
+        }
+        "STRING" {
+            Set-ItemProperty -Path $HivePath -Name $KeyName -Value $PropertyValue -Force
+        }
+        "BINARY" {
+            $ByteArray = $PropertyValue -split ',' | ForEach-Object { [convert]::ToByte($_,16) }
+            Set-ItemProperty -Path $HivePath -Name $KeyName -Value $ByteArray -Force
+        }
+        default {
+            Write-Host "Unknown Property Type: $PropertyType"
+        }
+    }
+}
+
+foreach ($Setting in $DefaultUserSettings) {
+    if ($Setting.SetProperty -eq $true) {
+        Set-RegistryValue -HivePath $Setting.HivePath -KeyName $Setting.KeyName -PropertyType $Setting.PropertyType -PropertyValue $Setting.PropertyValue
+        Write-Host "Set $($Setting.KeyName) in $($Setting.HivePath)"
+    }
+}
+$R=255
+
+$G=140
+
+$B=0
+
+
+$code = @"
+using System;
+using System.Drawing;
+using System.Runtime.InteropServices;
+using Microsoft.Win32;
+ 
+ 
+namespace CurrentUser
+{
+    public class Desktop
+    {
+        [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
+        private static extern int SystemParametersInfo(int uAction, int uParm, string lpvParam, int fuWinIni);
+        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        private static extern int SetSysColors(int cElements, int[] lpaElements, int[] lpRgbValues);
+        public const int UpdateIniFile = 0x01;
+        public const int SendWinIniChange = 0x02;
+        public const int SetDesktopBackground = 0x0014;
+        public const int COLOR_DESKTOP = 1;
+        public int[] first = {COLOR_DESKTOP};
+ 
+ 
+        public static void RemoveWallPaper()
+        {
+            SystemParametersInfo( SetDesktopBackground, 0, "", SendWinIniChange | UpdateIniFile );
+            RegistryKey regkey = Registry.CurrentUser.OpenSubKey("Control Panel\\Desktop", true);
+            regkey.SetValue(@"WallPaper", 0);
+            regkey.Close();
+        }
+ 
+        public static void SetBackground(byte r, byte g, byte b)
+        {
+            int[] elements = {COLOR_DESKTOP};
+ 
+            RemoveWallPaper();
+            System.Drawing.Color color = System.Drawing.Color.FromArgb(r,g,b);
+            int[] colors = { System.Drawing.ColorTranslator.ToWin32(color) };
+ 
+            SetSysColors(elements.Length, elements, colors);
+            RegistryKey key = Registry.CurrentUser.OpenSubKey("Control Panel\\Colors", true);
+            key.SetValue(@"Background", string.Format("{0} {1} {2}", color.R, color.G, color.B));
+            key.Close();
+        }
+    }
+}
+ 
+"@
+try
+{
+    Add-Type -TypeDefinition $code -ReferencedAssemblies System.Drawing.dll 
+}catch{
+}
+finally
+{
+    [CurrentUser.Desktop]::SetBackground($R, $G, $B)
+}
+
+Function Set-WallPaper {
+ 
+<#
+ 
+    .SYNOPSIS
+    Applies a specified wallpaper to the current user's desktop
+    
+    .PARAMETER Image
+    Provide the exact path to the image
+ 
+    .PARAMETER Style
+    Provide wallpaper style (Example: Fill, Fit, Stretch, Tile, Center, or Span)
+  
+    .EXAMPLE
+    Set-WallPaper -Image "C:\Wallpaper\Default.jpg"
+    Set-WallPaper -Image "C:\Wallpaper\Background.jpg" -Style Fit
+  
+#>
+ 
+param (
+    [parameter(Mandatory=$True)]
+    [string]$Image,
+    [parameter(Mandatory=$False)]
+    [ValidateSet('Fill', 'Fit', 'Stretch', 'Tile', 'Center', 'Span')]
+    [string]$Style
+)
+ 
+$WallpaperStyle = Switch ($Style) {
+  
+    "Fill" {"10"}
+    "Fit" {"6"}
+    "Stretch" {"2"}
+    "Tile" {"0"}
+    "Center" {"0"}
+    "Span" {"22"}
+  
+}
+ 
+If($Style -eq "Tile") {
+ 
+    New-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name WallpaperStyle -PropertyType String -Value $WallpaperStyle -Force
+    New-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name TileWallpaper -PropertyType String -Value 1 -Force
+ 
+}
+Else {
+ 
+    New-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name WallpaperStyle -PropertyType String -Value $WallpaperStyle -Force
+    New-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name TileWallpaper -PropertyType String -Value 0 -Force
+ 
+}
+ 
+Add-Type -TypeDefinition @" 
+using System; 
+using System.Runtime.InteropServices;
+  
+public class Params
+{ 
+    [DllImport("User32.dll",CharSet=CharSet.Unicode)] 
+    public static extern int SystemParametersInfo (Int32 uAction, 
+                                                   Int32 uParam, 
+                                                   String lpvParam, 
+                                                   Int32 fuWinIni);
+}
+"@ 
+  
+    $SPI_SETDESKWALLPAPER = 0x0014
+    $UpdateIniFile = 0x01
+    $SendChangeEvent = 0x02
+  
+    $fWinIni = $UpdateIniFile -bor $SendChangeEvent
+  
+    $ret = [Params]::SystemParametersInfo($SPI_SETDESKWALLPAPER, 0, $Image, $fWinIni)
+}
+ 
+Set-WallPaper -Image "C:\Windows\Web\Wallpaper\Windows\AAMWallpaper.jpg" -Style Fit
+
+
+Start-Process "C:\Program Files\Microsoft Office\root\Office16\OUTLOOK.EXE" -ArgumentList "/safe:3"
+
+sleep -Seconds 1
+
+Get-Process -Name outlook | Where-Object { $_.SessionId -eq ((Get-Process -Id $PID).SessionId)} | Stop-Process -Force
+$IncrementKeyPath = "HKCU:\Software\Scripts"
+$IncrementKeyName = "Increment"
+
+if (-not (Test-Path $IncrementKeyPath)) {
+    Write-Host "Registry path $IncrementKeyPath does not exist. Creating it."
+    New-Item -Path $IncrementKeyPath -Force | Out-Null
+}
+
+$CurrentIncrementValue = Get-ItemProperty -Path $IncrementKeyPath -Name $IncrementKeyName -ErrorAction SilentlyContinue
+
+if ($null -eq $CurrentIncrementValue) {
+    Set-ItemProperty -Path $IncrementKeyPath -Name $IncrementKeyName -Value 1 -Force
+    Write-Host "Created $IncrementKeyName and set its value to 1."
+} else {
+    $NewIncrementValue = $CurrentIncrementValue.Increment + 1
+    Set-ItemProperty -Path $IncrementKeyPath -Name $IncrementKeyName -Value $NewIncrementValue -Force
+    Write-Host "Incremented $IncrementKeyName value to $NewIncrementValue."
+}
+if ($NewIncrementValue -ge 1) {
+
+    Get-Item HKCU:\Software\Microsoft\Windows\CurrentVersion\Run | Remove-ItemProperty -Name RunAVDUserOptimizations -ErrorAction SilentlyContinue
+}
