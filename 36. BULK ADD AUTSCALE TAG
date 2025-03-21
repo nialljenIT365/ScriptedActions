@@ -1,0 +1,38 @@
+$ResourceGroupName = "ResourceGroupName"
+
+##Change Me##
+$tags = @{"AUTOSCALE_TAG" = "TRUE"}
+##Change Me##
+
+# Define the list of VM names
+$AzureVMs = @(
+    "47",
+    "M009",
+    "M018",
+    "M022",
+    "051",
+    "M0074",
+    "M01U86",
+    "M01048",
+    "M0135",
+    "M010044",
+    "M059"
+)
+
+foreach ($AzureVMName in $AzureVMs) {
+    try {
+        # Retrieve VM details and extract the Resource ID
+        $VM = Get-AzVM -ResourceGroupName $ResourceGroupName -Name $AzureVMName -ErrorAction Stop
+        $VMResourceId = $VM.Id
+
+        Write-Output "Updating VM: $AzureVMName (Resource ID: $VMResourceId)"
+
+        # Update the tag on the VM
+        Update-AzTag -ResourceId $VMResourceId -Tag $tags -Operation Merge
+
+        Write-Output "Successfully updated tags for VM: $AzureVMName"
+    }
+    catch {
+        Write-Output "Failed to update VM: $AzureVMName. Error: $_"
+    }
+}
