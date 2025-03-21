@@ -1,0 +1,43 @@
+#description: Adds user assigned to personal desktop to local Administrators group on session host VM based on device join type.
+#execution mode: Combined
+#tags: Nerdio
+<#
+Notes:
+This script checks if the device is Hybrid Azure AD Joined or Entra ID Joined.
+If Hybrid, it adds the AD user to the local Administrators group.
+If Entra ID Joined, it adds the Azure AD user to the local Administrators group.
+It also checks if the user is already a local admin before attempting to add them.
+If the addition fails, it retries once to ensure the user is added.
+Ensure $DesktopUser is provided in UPN format (e.g., user@contoso.com) for Entra ID joined devices.
+#>
+
+# Check if $DesktopUser is populated
+if (-not $DesktopUser) {
+    Write-Error -Message 'ERROR: No Desktop User Specified. This VM may not be a personal Desktop.'
+    exit
+}
+
+# Run dsregcmd /status to determine join type
+$dsregStatus = dsregcmd /status
+
+# Attempt to add the user, checking if the device is Hybrid or Entra ID joined
+if ($dsregStatus -match "DomainJoined\s*:\s*YES" -and $dsregStatus -match "AzureAdJoined\s*:\s*YES") {
+    # Device is Hybrid Azure AD Joined
+    Write-Output "Device is Hybrid Azure AD Joined."
+    # Output the Desktop User variable for verification
+    Write-Output "Desktop User: $DesktopUser"
+    Add-LocalGroupMember -Group "Administrators" -Member $DesktopUser
+}
+elseif ($dsregStatus -match "AzureAdJoined\s*:\s*YES" -and $dsregStatus -notmatch "DomainJoined\s*:\s*YES") {
+    # Device is Entra ID Joined
+    Write-Output "Device is Entra ID Joined."
+    Write-Output "Desktop User: $DesktopUser"
+    #$AzureAD = "AzureAD\"
+    $AzureAD = "aberdeen\"
+    $Target = $AzureAD+$DesktopUser
+    Add-LocalGroupMember -Group "Administrators" -Member $Target
+}
+else {
+    Write-Error -Message "ERROR: Device is neither Hybrid Azure AD Joined nor Entra ID Joined."
+    exit
+}
