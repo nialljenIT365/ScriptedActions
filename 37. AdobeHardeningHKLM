@@ -1,0 +1,77 @@
+#description: Applies Adobe Acrobat/Reader hardening and system registry settings across HKLM.
+#tags: Adobe, Registry, Hardened, Nerdio
+
+<#
+Notes:
+This script configures various Adobe Acrobat/Reader and system-wide settings via registry keys.
+Intended for use as a Nerdio Windows Scripted Action. Runs under SYSTEM context.
+
+#>
+
+# Helper function to create or update a registry value
+function Set-RegistryValue {
+    param (
+        [string]$Path,
+        [string]$Name,
+        [ValidateSet('String', 'DWord')][string]$Type,
+        [Parameter(ValueFromPipeline=$true)][object]$Value
+    )
+
+    if (-not (Test-Path $Path)) {
+        New-Item -Path $Path -Force | Out-Null
+    }
+
+    $existing = Get-ItemProperty -Path $Path -Name $Name -ErrorAction SilentlyContinue
+
+    if ($null -eq $existing) {
+        New-ItemProperty -Path $Path -Name $Name -PropertyType $Type -Value $Value -Force | Out-Null
+    } else {
+        Set-ItemProperty -Path $Path -Name $Name -Value $Value | Out-Null
+    }
+}
+
+# Registry entries to apply
+$RegistrySettings = @(
+    @{ Path = "HKLM:\SOFTWARE\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown\cTrustedFolders\cAlwaysTrustedForJavaScript"; Name = "t1"; Type = "String"; Value = "https://url.uk.m.mimecastprotect.com/s/aCFTC0g0RiLP3zgHVt2c9JJFH" },
+    @{ Path = "HKLM:\SOFTWARE\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown\cTrustedFolders\cAlwaysTrustedForJavaScript"; Name = "t2"; Type = "String"; Value = "J:\cofs" },
+    @{ Path = "HKLM:\SOFTWARE\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown\cTrustedFolders\cAlwaysTrustedForJavaScript"; Name = "t3"; Type = "String"; Value = "H:\" },
+    @{ Path = "HKLM:\SOFTWARE\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown"; Name = "bShowEbookMenu"; Type = "DWord"; Value = 0 },
+    @{ Path = "HKLM:\SOFTWARE\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown"; Name = "bDisableJavaScript"; Type = "DWord"; Value = 1 },
+    @{ Path = "HKLM:\SOFTWARE\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown"; Name = "bToggleFTE"; Type = "DWord"; Value = 0 },
+    @{ Path = "HKLM:\SOFTWARE\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown"; Name = "bShowScanTabInHomeView"; Type = "DWord"; Value = 0 },
+    @{ Path = "HKLM:\SOFTWARE\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown"; Name = "bEnable3D"; Type = "DWord"; Value = 0 },
+    @{ Path = "HKLM:\SOFTWARE\Policies\Adobe\Adobe Acrobat\11.0\FeatureLockDown"; Name = "bDisableJavaScript"; Type = "DWord"; Value = 1 },
+    @{ Path = "HKLM:\SOFTWARE\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown"; Name = "bEnableFlash"; Type = "DWord"; Value = 0 },
+    @{ Path = "HKLM:\SOFTWARE\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown\cTrustedFolders\cAlwaysTrustedForJavaScript"; Name = "t1"; Type = "String"; Value = "https://url.uk.m.mimecastprotect.com/s/aCFTC0g0RiLP3zgHVt2c9JJFH" },
+    @{ Path = "HKLM:\SOFTWARE\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown\cTrustedFolders\cAlwaysTrustedForJavaScript"; Name = "t2"; Type = "String"; Value = "J:\cofs" },
+    @{ Path = "HKLM:\SOFTWARE\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown\cTrustedFolders\cAlwaysTrustedForJavaScript"; Name = "t3"; Type = "String"; Value = "H:\" },
+    @{ Path = "HKLM:\SOFTWARE\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown"; Name = "bDisableJavaScript"; Type = "DWord"; Value = 1 },
+    @{ Path = "HKLM:\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings"; Name = "TrayIconVisibility"; Type = "DWord"; Value = 0 },
+    @{ Path = "HKLM:\SOFTWARE\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown"; Name = "bUsageMeasurement"; Type = "DWord"; Value = 1 },
+    @{ Path = "HKLM:\SOFTWARE\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown"; Name = "bEnableFlash"; Type = "DWord"; Value = 0 },
+    @{ Path = "HKLM:\SOFTWARE\Microsoft\PolicyManager\default\Settings\"; Name = "AllowRegion"; Type = "DWord"; Value = 1 },
+    @{ Path = "HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations"; Name = "ICEControl"; Type = "DWord"; Value = 2 },
+    @{ Path = "HKLM:\SOFTWARE\Policies\Adobe\Adobe Acrobat\DC\DisableMaintenance"; Name = "DisableMaintenance"; Type = "DWord"; Value = 1 },
+    @{ Path = "HKLM:\SOFTWARE\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown"; Name = "bUpdate"; Type = "DWord"; Value = 0 },
+    @{ Path = "HKLM:\SOFTWARE\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown"; Name = "bEnhancedSecurityInBrowser"; Type = "DWord"; Value = 0 },
+    @{ Path = "HKLM:\SOFTWARE\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown"; Name = "bAcroSuppressUpsel"; Type = "DWord"; Value = 1 },
+    @{ Path = "HKLM:\SOFTWARE\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown"; Name = "bProtectedMode"; Type = "DWord"; Value = 0 },
+    @{ Path = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System"; Name = "DelayedDesktopSwitchTimeout"; Type = "DWord"; Value = 2 },
+    @{ Path = "HKLM:\SOFTWARE\FSLogix\Apps"; Name = "CleanupInvalidSessions"; Type = "DWord"; Value = 1 },
+    @{ Path = "HKLM:\SOFTWARE\Policies\Adobe\Adobe Acrobat\11.0\FeatureLockDown\cTrustedFolders\cAlwaysTrustedForJavaScript"; Name = "t1"; Type = "String"; Value = "https://url.uk.m.mimecastprotect.com/s/aCFTC0g0RiLP3zgHVt2c9JJFH" },
+    @{ Path = "HKLM:\SOFTWARE\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown\cSharePoint"; Name = "bDisableSharePointFeatures"; Type = "DWord"; Value = 1 },
+    @{ Path = "HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer"; Name = "NoDisconnect"; Type = "String"; Value = "1" },
+    @{ Path = "HKLM:\SOFTWARE\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown\cServices"; Name = "bToggleDocumentCloud"; Type = "DWord"; Value = 1 },
+    @{ Path = "HKLM:\SOFTWARE\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown"; Name = "bEnhancedSecurityStandalone"; Type = "DWord"; Value = 0 },
+    @{ Path = "HKLM:\SOFTWARE\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown\cServices"; Name = "bToggleWebConnectors"; Type = "DWord"; Value = 1 },
+    @{ Path = "HKLM:\SOFTWARE\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown\cWelcomeScreen"; Name = "bShowWelcomeScreen"; Type = "DWord"; Value = 0 },
+    @{ Path = "HKLM:\SOFTWARE\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown"; Name = "bPurchaseAcro"; Type = "DWord"; Value = 1 },
+    @{ Path = "HKCR:\SOFTWARE\Adobe\Acrobat\Exe\"; Name = "(default)"; Type = "String"; Value = "C:\Program Files (x86)\Adobe\Acrobat Reader DC\Reader\AcroRd32.exe" }
+)
+
+# Apply all registry entries
+foreach ($entry in $RegistrySettings) {
+    Set-RegistryValue -Path $entry.Path -Name $entry.Name -Type $entry.Type -Value $entry.Value
+}
+
+### End Script ###
