@@ -1,14 +1,14 @@
 #description: Copy File to Device
 #execution mode: Combined
-#tags: abrdn, apps install
+#tags: apps install
 
 ######################### CHANGE ME #########################
 # Define Storage Account and File Share Name
 $StorageAccountName = "stgacctname"
 $FileShareName = "filesharename"
 # Define Application Name
-$ApplicationName = "Qualys_CloudAgentInstaller"
-$ApplicationInstaller = "QualysCloudAgent.exe"
+$ApplicationName = "<Name>"
+$ApplicationInstaller = "FileName"
 ######################### CHANGE ME #########################
 
 
