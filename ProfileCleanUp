@@ -1,0 +1,66 @@
+# Define a path on the target device you want to place your user script
+$baseDestinationPath = "C:\Packages\Scripts"
+
+# Define your script name and extension
+$ScriptName = "directorycleanup"
+$ScriptExtension = ".ps1"
+$ScriptFullName = "$ScriptName$ScriptExtension"
+
+# To force a rerun of the script the versions can be incremented
+$ScriptMajorVersion = "1"
+$ScriptMinorVersion = "0"
+$ScriptBuildVersion = "0"
+$Version = "$ScriptMajorVersion,$ScriptMinorVersion,$ScriptBuildVersion"
+
+$PowershellPath = "C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe"
+
+# Define the script content (runs in user context)
+$scriptContent = @'
+# Script Start #
+$pathsToDelete = @(
+    "$env:LOCALAPPDATA\Google\Chrome\User Data\Default\Cache",
+    "$env:LOCALAPPDATA\Google\Chrome\User Data\Default\Code Cache"
+)
+
+foreach ($path in $pathsToDelete) {
+    if (Test-Path $path) {
+        try {
+            Remove-Item -Path $path -Recurse -Force -ErrorAction Stop
+            Write-Output "Deleted: $path"
+        } catch {
+            Write-Warning "Failed to delete $path - $_"
+        }
+    } else {
+        Write-Output "Path not found (skipped): $path"
+    }
+}
+# Script End #
+'@
+
+# Ensure the destination folder exists
+if (-Not (Test-Path $baseDestinationPath)) {
+    New-Item -Path $baseDestinationPath -ItemType Directory
+    Write-Output "Created destination directory at $baseDestinationPath"
+}
+
+# Write the script file
+$filePath = Join-Path $baseDestinationPath $ScriptFullName
+Set-Content -Path $filePath -Value $scriptContent -Force
+Write-Host "$ScriptFullName has been created at $filePath."
+
+# Define optional log file location
+$logPath = Join-Path $env:LOCALAPPDATA "$ScriptName.log"
+
+# Define the command to run the script with Bypass policy, hidden, and output redirection
+$runCommand = "`"$PowershellPath`" -Command Start-Process powershell.exe -ArgumentList '-ExecutionPolicy Bypass -WindowStyle Hidden -File `"$filePath`"' -NoNewWindow -RedirectStandardOutput `"$logPath`""
+
+# Define and create the Active Setup registry key
+$ActiveSetupKey = "HKLM:\SOFTWARE\Microsoft\Active Setup\Installed Components\$ScriptName"
+New-Item -Path $ActiveSetupKey -Force | Out-Null
+
+# Set Active Setup registry values
+Set-ItemProperty -Path $ActiveSetupKey -Name "(Default)" -Value "$ScriptName"
+Set-ItemProperty -Path $ActiveSetupKey -Name "StubPath" -Value $runCommand
+Set-ItemProperty -Path $ActiveSetupKey -Name "Version" -Value $Version
+
+Write-Host "Active Setup key has been created for $ScriptName."
